@@ -1,0 +1,88 @@
+<div class="container mt-2">
+  <div class="row">
+    <div class="col col-md-6">
+      <div class="card">
+        <div class="card-header" style="font-size: 20px;margin: 20px;">Account Operations</div>
+        <div class="card-body">
+          <ng-template #errorTemplate>
+            <ng-container *ngIf="errorMessage ; else loading">
+              <div class="text-danger">{{errorMessage}}</div>
+            </ng-container>
+            <ng-template #loading>
+              Loading ...
+            </ng-template>
+          </ng-template>
+          <ng-container *ngIf="accountObservable | async as accountDetails">
+            <div class="mb-md-3">
+              <label style="font-size: 20px;margin: 20px;">Account ID :</label>
+              <label style="font-size: 22px;margin: 20px;"><strong>{{accountDetails.accountId}}</strong></label>
+            </div>
+            <div class="mb-md-3">
+              <label style="font-size: 20px;margin: 20px;">Balance :</label>
+              <label style="font-size: 20px; margin: 20px;"><strong>{{accountDetails.balance | number : '1.2-2'}}</strong></label>
+            </div>
+            <table class="table" style="font-size: 16px">
+              <thead>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Amount</th>
+              <th>Description</th>
+              </thead>
+              <tbody>
+              <tr *ngFor="let op of accountDetails.accountOperationDTOList">
+                <td style="align-content: center">{{op.operationDate | date : 'dd-mm-yyyy'}}</td>
+                <td style="align-content: center">{{op.type}}</td>
+                <td >{{op.amount | number : '1.2-2'}}</td>
+                <th class="text-end" >{{op.description}}</th>
+              </tr>
+              </tbody>
+            </table>
+            <ul class="nav nav-pills">
+              <li *ngFor="let item of [].constructor(accountDetails.totalPages);let page=index">
+                <a [ngClass]="page==currentPage?'btn-info':'btn-outline-info'" (click)="gotoPage(page)"
+                   class="btn  ms-1 mt-1">{{page}}</a>
+              </li>
+            </ul>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="col col-md-6">
+      <div class="card" *ngIf="accountObservable">
+        <div class="card-header" style="font-size: 20px;margin: 20px;">Operations</div>
+        <div class="card-body">
+
+          <form [formGroup]="operationFromGroup" (ngSubmit)="handleAccountOperation()" method="post">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" formControlName="operationType" value="DEBIT">
+              <label class="form-check-label">DEBIT:</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" formControlName="operationType" value="CREDIT">
+              <label class="form-check-label">CREDIT:</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" formControlName="operationType" value="TRANSFER">
+              <label class="form-check-label">TRANSFER:</label>
+            </div>
+            <div class="mb-3" *ngIf="operationFromGroup.value.operationType=='TRANSFER'">
+              <label class="form-label">Account Destination :</label>
+              <input type="text" formControlName="accountDestination" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Amount :</label>
+              <input type="text" formControlName="amount" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Description :</label>
+              <input type="text" formControlName="description" class="form-control">
+            </div>
+            <div class="d-grid mb-3">
+              <button class="btn btn-success">Save Operation</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

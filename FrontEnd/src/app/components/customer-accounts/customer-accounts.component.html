@@ -1,0 +1,58 @@
+<div class="container">
+  <br><br>
+  <ng-container *ngIf="true; else failureOrLading">
+    <div style="text-align: center" class="card">
+      <div class="card-header">
+        <h2 style="font-size: 40px;">Informations Personnel</h2>
+        <table class="table" style="font-size: 20px;">
+          <thead>
+          <tr>
+            <th>Name :</th>
+            <th>{{
+              customer.name}}</th>
+          </tr>
+          </thead>
+          <tbody>
+           <th>Email :</th>
+           <th>{{customer.email}}
+          </tbody>
+        </table>
+      </div>
+      <div class="card-body" style="font-size: 18px;">
+        <h2 style="font-size: 40px;">Accounts</h2>
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Account Id</th>
+            <th *ngIf="(customer1.id == customer.id) || (roles!=null && roles.includes('ADMIN'))">Balance</th>
+            <th>Type</th>
+            <th *ngIf ="(customer1.id==customer.id) ||(roles!=null && roles.includes('ADMIN'))">Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let account  of accounts ">
+            <td>{{account.id}}</td>
+            <td *ngIf ="(customer1.id===customer.id) ||(roles!=null && roles.includes('ADMIN'))">{{account.balance}} DHs</td>
+            <td >{{account.type.replace('Account',' Account')}}</td>
+            <td *ngIf ="(customer1.id===customer.id) ||(roles!=null && roles.includes('ADMIN'))">
+              <button  (click)="viewOperations(account)" class="btn btn-warning">
+                View All Operations
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #failureOrLading>
+    <ng-container *ngIf="errorMessage; else loading">
+      <div class="text-danger">
+        {{errorMessage}}
+      </div>
+    </ng-container>
+    <ng-template #loading>
+      Loading .....
+    </ng-template>
+  </ng-template>
+</div>
