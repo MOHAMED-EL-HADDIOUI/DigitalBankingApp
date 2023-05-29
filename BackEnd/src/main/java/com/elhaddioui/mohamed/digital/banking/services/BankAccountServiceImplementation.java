@@ -268,6 +268,7 @@ public class BankAccountServiceImplementation implements BankAccountService {
     @Override
     public void deleteCustomer(Long customerId) {
         customerRepository.deleteById(customerId);
+        accountService.deleteUser(customerId+1);
     }
 
     @Override

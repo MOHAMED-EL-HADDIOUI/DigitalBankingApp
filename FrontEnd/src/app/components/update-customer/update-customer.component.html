@@ -1,23 +1,24 @@
+<div class="page">
 <div class="container">
   <div style="text-align: center" class="card col-md-5 offset-3">
-    <div class="card-header">
+    <div class="card-header" style="font-size: 40px;">
       Update Customer Profile
     </div>
-    <div class="card-body">
+    <div class="card-body" style="font-size: 30px;">
       <form [formGroup]="updateCustomerFormGroup" (ngSubmit)="updateCustomer()">
         <div class="mb-3">
           <div class="mb-3">
-            <label class="form-label">Name:</label>
-            <input type="text" formControlName="name" class="form-control">
+            <label class="form-label">Name</label>
+            <input type="text" formControlName="name" class="form-control" style="font-size: 28px;">
             <span class="text-danger" *ngIf=" updateCustomerFormGroup.controls['name'].touched
           &&  updateCustomerFormGroup.controls['name'].errors
           && updateCustomerFormGroup.controls['name'].errors['required'] ">
             Name is required
           </span>
           </div>
-          <label class="form-label">email:</label>
-          <input type="text" formControlName="email" class="form-control">
-          <button [disabled]="!updateCustomerFormGroup.valid" class="btn btn-success mt-3">Save</button>
+          <label class="form-label">Email</label>
+          <input type="text" formControlName="email" class="form-control" style="font-size: 28px;">
+          <button [disabled]="!updateCustomerFormGroup.valid" class="btn btn-success mt-3" style="font-size: 30px;">Save</button>
           <div class="mb-3">
           <span class="text-danger" *ngIf=" updateCustomerFormGroup.controls['name'].touched
           &&  updateCustomerFormGroup.controls['email'].errors
@@ -29,5 +30,5 @@
       </form>
     </div>
   </div>
-
+</div>
 </div>

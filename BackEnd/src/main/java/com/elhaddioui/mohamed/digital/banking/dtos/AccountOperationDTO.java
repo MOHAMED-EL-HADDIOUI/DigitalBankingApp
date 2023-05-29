@@ -20,5 +20,4 @@ public class AccountOperationDTO {
     private String description;
     private String accountId;
 
-
 }

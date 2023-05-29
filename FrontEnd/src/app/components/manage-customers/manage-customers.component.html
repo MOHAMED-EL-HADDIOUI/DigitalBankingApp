@@ -1,18 +1,19 @@
-<div class="container mt-2">
+<div class="page">
+<div class="container">
   <ng-container *ngIf="customers |async as listCustomers; else failureOrLading">
-    <div style="text-align: center" class="card" *ngIf="customers">
+    <div style="text-align: center;" class="card" *ngIf="customers">
       <div class="card-header">
         <h2 style="font-size: 40px;">Customers</h2>
       </div>
-      <div style="text-align: center" class="card-body" style="font-size: 20px;">
+      <div style="text-align: center" class="card-body" style="font-size: 30px;">
         <form [formGroup]="searchFormGroup" (ngSubmit)="searchCustomers()">
-          <div class="input-group" style="font-size: 25px;">
-            <label class="input-group-text">Keyword : </label>
-            <input type="text" formControlName="keyword" class="form-control">
-            <button class="btn btn-warning">Search</button>
+          <div class="input-group">
+            <label class="input-group-text" style="font-size: 30px;">Keyword : </label>
+            <input type="text" formControlName="keyword" class="form-control" style="font-size: 28px;">
+            <button class="btn btn-warning" style="font-size: 30px;">Search</button>
           </div>
         </form>
-        <table class="table">
+        <table class="table mt-5">
           <thead>
           <tr>
             <th>Name</th>
@@ -25,13 +26,13 @@
             <td>{{c.name}}</td>
             <td>{{c.email}}</td>
             <td>
-              <button *ngIf="roles!=null && roles.includes('ADMIN')" (click)="handleDeleteButton(c)" style="margin-right: 8px" class="btn btn-danger">
+              <button *ngIf="roles!=null && roles.includes('ADMIN')" (click)="handleDeleteButton(c)" style="margin-right: 8px;font-size: 26px;" class="btn btn-danger">
                 Delete
               </button>
-              <button *ngIf="roles!=null && roles.includes('ADMIN')" (click)="goToUpdateCustomer(c)" class="btn btn-warning" style="margin-right: 8px">
+              <button *ngIf="roles!=null && roles.includes('ADMIN')" (click)="goToUpdateCustomer(c)" class="btn btn-warning" style="margin-right: 8px;font-size: 26px;">
                 Update
               </button>
-              <button (click)="handleCustomerAccounts(c)" class="btn btn-success" style="margin-right: 8px">
+              <button (click)="handleCustomerAccounts(c)" class="btn btn-success" style="margin-right: 8px;font-size: 26px;">
                 View Accounts
               </button>
             </td>
@@ -40,9 +41,9 @@
           </tbody>
         </table>
         <ul class="nav nav-pills">
-          <li *ngFor="let item of [].constructor(listCustomers.totalpage);let page=index">
+          <li *ngFor="let item of [].constructor(listCustomers.totalpage);let page=index" >
             <a [ngClass]="page==currentPage?'btn-warning':'btn-outline-warning'" (click)="gotoPage(page)"
-               class="btn ms-1 ">{{page}}</a>
+               class="btn m-2 " style="font-size: 26px;">{{page}}</a>
           </li>
         </ul>
       </div>
@@ -61,4 +62,5 @@
       Loading, please wait ...
     </ng-template>
   </ng-template>
+</div>
 </div>

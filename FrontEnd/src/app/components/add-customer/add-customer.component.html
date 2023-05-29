@@ -1,14 +1,15 @@
+<div class="page">
 <div class="container">
   <div class="card col-md-6 offset-3">
-    <div class="card-header">
+    <div class="card-header" style="font-size: 40px;">
       Add a new customer
     </div>
-    <div class="card-body">
+    <div class="card-body" style="font-size: 30px;">
       <form [formGroup]="newCustomerFormGroup" (ngSubmit)="addCustomer()">
         <div class="mb-3">
           <div class="mb-3">
             <label class="form-label">Name:</label>
-            <input type="text" formControlName="name" class="form-control">
+            <input type="text" formControlName="name" class="form-control" style="font-size: 28px;">
             <span class="text-danger" *ngIf=" newCustomerFormGroup.controls['name'].touched
           &&  newCustomerFormGroup.controls['name'].errors
           && newCustomerFormGroup.controls['name'].errors['required'] ">
@@ -16,8 +17,8 @@
           </span>
           </div>
           <label class="form-label">email:</label>
-          <input type="text" formControlName="email" class="form-control">
-          <button [disabled]="!newCustomerFormGroup.valid" class="btn btn-success mt-3">Save</button>
+          <input type="text" formControlName="email" class="form-control" style="font-size: 28px;">
+          <button [disabled]="!newCustomerFormGroup.valid" class="btn btn-success mt-3" style="font-size: 30px;">Save</button>
           <div class="mb-3">
           <span class="text-danger" *ngIf=" newCustomerFormGroup.controls['name'].touched
           &&  newCustomerFormGroup.controls['email'].errors
@@ -29,5 +30,5 @@
       </form>
     </div>
   </div>
-
+</div>
 </div>

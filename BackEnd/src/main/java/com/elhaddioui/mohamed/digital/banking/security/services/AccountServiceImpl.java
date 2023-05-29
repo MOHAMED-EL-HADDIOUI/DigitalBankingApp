@@ -29,6 +29,10 @@ public class AccountServiceImpl implements AccountService {
         appUser.setPassword(passwordEncoder.encode(pw));
         return appUserRepository.save(appUser);
     }
+    @Override
+    public void deleteUser(Long id) {
+        appUserRepository.deleteById(id);
+    }
 
     @Override
     public AppRole addNewRole(AppRole appRole) {

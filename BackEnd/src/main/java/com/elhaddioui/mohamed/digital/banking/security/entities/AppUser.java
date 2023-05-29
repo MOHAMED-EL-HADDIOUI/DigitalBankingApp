@@ -22,6 +22,5 @@ public class AppUser {
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<AppRole> roles=new ArrayList<>();
-//    @OneToOne(mappedBy = "appUser")
-//    private Customer customer;
+
 }
