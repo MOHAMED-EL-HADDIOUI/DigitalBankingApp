@@ -91,7 +91,8 @@ export class ManageAccountsComponent implements OnInit {
           }
         }
       );
-    }else if('TRANSFER'){
+    }else if(operationType=='TRANSFER'){
+      console.log("TRANSFER")
       this.accountService.makeTransfer(accountDestination,accountId,amount,description).subscribe(
         {
           next: data => {

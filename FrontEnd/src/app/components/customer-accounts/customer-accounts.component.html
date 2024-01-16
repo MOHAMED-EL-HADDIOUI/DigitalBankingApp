@@ -1,16 +1,14 @@
 <div class="page">
-<div class="container">
-  <br><br>
+<div class="container" style="padding-top: 2%;">
   <ng-container *ngIf="true; else failureOrLading">
-    <div style="text-align: center" class="card">
+    <div style="text-align: center;background: linear-gradient(3deg, #343a40, #d0ded5);border-radius: 10px" class="card">
       <div class="card-header">
         <h2 style="font-size: 40px;">Informations Personnel</h2>
         <table class="table" style="font-size: 20px;">
           <thead>
           <tr>
             <th>Name :</th>
-            <th>{{
-              customer.name}}</th>
+            <th>{{customer.name}}</th>
           </tr>
           </thead>
           <tbody>

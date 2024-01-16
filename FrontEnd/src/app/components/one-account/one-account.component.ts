@@ -96,7 +96,7 @@ export class OneAccountComponent implements OnInit {
           }
         }
       );
-    }else if('TRANSFER'){
+    }else if(operationType=='TRANSFER'){
       this.accountService.makeTransfer(accountDestination,accountId,amount,description).subscribe(
         {
           next: data => {

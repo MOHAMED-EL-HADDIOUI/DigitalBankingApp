@@ -1,10 +1,13 @@
 <div class="page">
-<div class="container">
+<div class="container"style="padding-top: 2%;">
   <div class="row">
     <div class="col col-md-6">
-      <div class="card">
-        <div class="card-header" style="font-size: 28px;margin: 20px;">Account Operations</div>
-        <div class="card-body" style="font-size: 28px">
+      <div class="card" style="background: linear-gradient(3deg, #686f77, #d0ded5);border-radius: 10px;">
+        <div class="card-header" style="display: flex; align-items: center;">
+          <img src="https://cdn-icons-png.flaticon.com/512/3882/3882227.png" style="width: 10%; height: 8%;">
+          <h1 style="font-size: 30px; margin-left: 10px;">Account Transactions</h1>
+        </div>
+        <div class="card-body" style="font-size: 20px">
           <ng-template #errorTemplate>
             <ng-container *ngIf="errorMessage ; else loading">
               <div class="text-danger">{{errorMessage}}</div>
@@ -15,14 +18,14 @@
           </ng-template>
           <ng-container *ngIf="accountObservable | async as accountDetails">
             <div class="mb-md-3">
-              <label style="font-size: 20px;margin: 20px;">Account ID :</label>
-              <label style="font-size: 22px;margin: 20px;"><strong>{{accountDetails.accountId}}</strong></label>
+              <label style="border-radius: 20px;margin: 0% 3%;padding: 3%;">Account ID :</label>
+              <label style="font-size: 20px;margin: 20px;"><strong>{{accountDetails.accountId}}</strong></label>
             </div>
             <div class="mb-md-3">
-              <label style="font-size: 20px;margin: 20px;">Balance :</label>
+              <label style="border-radius: 20px;margin: 0% 3%;padding: 3%;">Balance :</label>
               <label style="font-size: 20px; margin: 20px;"><strong>{{accountDetails.balance | number : '1.2-2'}}</strong></label>
             </div>
-            <table class="table" style="font-size: 16px">
+            <table class="table" style="font-size: 20px">
               <thead>
               <th>Date</th>
               <th>Type</th>
@@ -49,9 +52,12 @@
       </div>
     </div>
     <div class="col col-md-6">
-      <div class="card" *ngIf="accountObservable">
-        <div class="card-header" style="font-size: 28px;margin: 20px;">Operations</div>
-        <div class="card-body" style="font-size: 26px">
+      <div class="card" *ngIf="accountObservable" style="background: linear-gradient(3deg, #686f77, #d0ded5);border-radius: 10px;">
+        <div class="card-header" style="display: flex; align-items: center;">
+          <img src="https://cdn-icons-png.flaticon.com/512/3882/3882227.png" style="width: 10%; height: 8%;">
+          <h1 style="font-size: 30px; margin-left: 10px;">Transaction</h1>
+        </div>
+        <div class="card-body" style="font-size: 20px">
 
           <form [formGroup]="operationFromGroup" (ngSubmit)="handleAccountOperation()" method="post">
             <div class="form-check form-check-inline">
@@ -68,15 +74,15 @@
             </div>
             <div class="mb-3" *ngIf="operationFromGroup.value.operationType=='TRANSFER'">
               <label class="form-label">Account Destination :</label>
-              <input type="text" formControlName="accountDestination" class="form-control" style="font-size: 22px">
+              <input type="text" formControlName="accountDestination" class="form-control" style="font-size: 20px">
             </div>
             <div class="mb-3">
               <label class="form-label">Amount :</label>
-              <input type="text" formControlName="amount" class="form-control" style="font-size: 22px">
+              <input type="text" formControlName="amount" class="form-control" style="font-size: 20px">
             </div>
             <div class="mb-3">
               <label class="form-label">Description :</label>
-              <input type="text" formControlName="description" class="form-control" style="font-size: 22px">
+              <input type="text" formControlName="description" class="form-control" style="font-size: 20px">
             </div>
             <div class="d-grid mb-3">
               <button class="btn btn-success">Save Operation</button>

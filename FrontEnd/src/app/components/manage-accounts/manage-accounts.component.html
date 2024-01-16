@@ -1,94 +1,102 @@
-<div class="page">
-<div class="container">
-<div class="row">
-  <div class="col col-md-6">
-    <div class="card">
-      <div class="card-header">
-        <div class="card-body">
-          <form [formGroup]="accountFormGroup" (ngSubmit)="searchAccount()">
-            <div class="input-group">
-            <label class="input-group-text" style="font-size: 26px;">AccountId</label>
-            <input type="text" formControlName="accountId" class="form-control" style="font-size: 22px;">
-            <button class="btn btn-info" style="font-size: 26px;"><i class="bi-search"></i>search</button>
-            </div>
-          </form>
-<ng-container *ngIf="accountObservable | async as accountDetails">
-  <div class="mb-2 mt-3" style="font-size: 25px;">
-    <label>AccountId :</label>
-    <label><strong>{{accountDetails.accountId}}</strong></label>
-  </div>
-  <div class="mb-2 mt-3" style="font-size: 25px;">
-    <label>Balance :</label>
-    <label><strong>{{accountDetails.balance | number :'1.2-2'}} DH</strong></label>
-  </div>
-  <table class="table" style="font-size: 22px;">
-    <thead>
-    <tr>
-    <th>Date</th>
-    <th>Type</th>
-    <th>Amount</th>
-    </tr>
-    </thead>
-    <tbody>
+<div class="page" style="padding-top: 2%;">
+  <div class="container">
+    <div class="row">
+      <div class="col col-md-6">
+        <div class="card" style="background: linear-gradient(3deg, #686f77, #d0ded5);border-radius: 10px;">
+          <div class="card-header">
+            <div class="card-body">
+              <form [formGroup]="accountFormGroup" (ngSubmit)="searchAccount()">
+                <div class="input-group">
+                  <label class="input-group-text" style="font-size: 20px;margin-right:5%;border-radius: 10px">ID Account : </label>
+                  <input type="text" formControlName="accountId" class="form-control" style="font-size: 20px;border-radius: 10px">
+                  <button class="btn btn-info" style="font-size: 20px;margin-left:5%;border-radius: 10px"><i class="bi-search"></i> Search</button>
+                </div>
+              </form>
+              <ng-container *ngIf="accountObservable | async as accountDetails">
+                <div class="mb-2 mt-3" style="font-size: 20px;">
+                  <label style="border-radius: 20px;margin: 0% 3%;padding: 3%;">ID Account :  </label>
+                  <label><strong>{{accountDetails.accountId}}</strong></label>
+                </div>
+                <div class="mb-2 mt-3" style="font-size: 20px;">
+                  <label style="border-radius: 20px;margin: 0% 3%;padding: 3%;">Balance :</label>
+                  <label><strong>{{accountDetails.balance | number :'1.2-2'}}  DH</strong></label>
+                </div>
+                <table class="table" style="font-size: 20px;">
+                  <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                  </tr>
+                  </thead>
+                  <tbody>
 
-    <tr *ngFor="let op of accountDetails.accountOperationDTOList">
-      <td>{{op.operationDate | date : 'dd-mm-yyyy'}}</td>
-      <td>{{op.type}}</td>
-      <td class="text-end">{{op.amount}}</td>
-    </tr>
-    </tbody>
-  </table>
-  <ul class="nav nav-pills">
-    <li *ngFor="let item of [].constructor(accountDetails.totalPages);let page=index">
-      <a [ngClass]="page==currentPage?'btn-info':'btn-outline-info'" (click)="gotoPage(page)" class="btn ms-1 ">{{page}}</a>
-    </li>
-  </ul>
-</ng-container>
+                  <tr *ngFor="let op of accountDetails.accountOperationDTOList">
+                    <td>{{op.operationDate | date : 'dd-mm-yyyy'}}</td>
+                    <td>{{op.type}}</td>
+                    <td class="text-end">{{op.amount}}</td>
+                    <td>{{op.description}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+                <ul class="nav nav-pills">
+                  <li *ngFor="let item of [].constructor(accountDetails.totalPages);let page=index">
+                    <a [ngClass]="page==currentPage?'btn-info':'btn-outline-info'" (click)="gotoPage(page)"
+                       class="btn ms-1 ">{{page}}</a>
+                  </li>
+                </ul>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col col-md-6" >
+        <div class="card" *ngIf="accountObservable" style="background: linear-gradient(3deg, #686f77, #d0ded5);border-radius: 10px;">
+          <div class="card-header" style="font-size: 20px;">
+            Operations
+          </div>
+          <div class="card-body" style="font-size: 20px;">
+            <form [formGroup]="operationFormGroup">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" formControlName="operationType" value="DEBIT"
+                       style="font-size: 20px;">
+
+                <label class="form-check-label">Debit</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" formControlName="operationType" value="CREDIT"
+                       style="font-size: 20px;">
+                <label class="form-check-label">Credit</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" formControlName="operationType" value="TRANSFER"
+                       style="font-size: 20px;">
+                <label class="form-check-label">Transfer:</label>
+              </div>
+              <div class="mb-3" *ngIf="operationFormGroup.value.operationType=='TRANSFER'">
+                <label>Account Destination:</label>
+                <input type="text" formControlName="accountDestination" class="form-control" style="font-size: 20px;">
+              </div>
+              <div class="mb-3">
+                <label>Amount:</label>
+                <input type="text" formControlName="amount" class="form-control" style="font-size: 20px;">
+              </div>
+              <div class="mb-3">
+                <label>Description:</label>
+                <input type="text" formControlName="description" class="form-control" style="font-size: 20px;">
+              </div>
+              <div class="d-grid">
+                <button (click)="handleAccountOperation()" class="btn btn-success btn" style="font-size: 20px;">Save
+                  Operation
+                </button>
+              </div>
+
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="col col-md-6">
-<div class="card" *ngIf="accountObservable">
-  <div class="card-header" style="font-size: 26px;">
-    Operations
-  </div>
-  <div class="card-body" style="font-size: 26px;">
-    <form [formGroup]="operationFormGroup" >
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio"formControlName="operationType" value="DEBIT" style="font-size: 22px;">
 
-        <label class="form-check-label">Debit</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio"formControlName="operationType" value="CREDIT" style="font-size: 22px;">
-        <label class="form-check-label">Credit</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio"formControlName="operationType" value="TRANSFER" style="font-size: 22px;">
-        <label class="form-check-label">Transfer:</label>
-      </div>
-      <div class="mb-3" *ngIf="operationFormGroup.value.operationType=='TRANSFER'" >
-        <label>Account Destination:</label>
-        <input type="text" formControlName="accountDestination" class="form-control" style="font-size: 22px;">
-      </div>
-      <div class="mb-3">
-        <label>Amount:</label>
-        <input type="text" formControlName="amount" class="form-control" style="font-size: 22px;">
-      </div>
-      <div class="mb-3">
-        <label>Description:</label>
-        <input type="text" formControlName="description" class="form-control"style="font-size: 22px;">
-      </div>
-     <div class="d-grid">
-       <button (click)="handleAccountOperation()" class="btn btn-success btn" style="font-size: 26px;">Save Operation</button>
-     </div>
-
-    </form>
   </div>
-</div>
-  </div>
-</div>
-
-</div>
 </div>

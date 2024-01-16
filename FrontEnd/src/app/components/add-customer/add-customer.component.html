@@ -1,15 +1,16 @@
 <div class="page">
-<div class="container">
+<div class="container" style="padding-top: 2%;">
   <div class="card col-md-6 offset-3">
-    <div class="card-header" style="font-size: 40px;">
-      Add a new customer
+    <div class="card-header" style="display: flex; align-items: center;">
+      <img src="https://cdn-icons-png.flaticon.com/512/9775/9775776.png" style="width: 10%; height: 8%;">
+      <h1 style="font-size: 30px; margin-left: 10px;">Add a new customer</h1>
     </div>
-    <div class="card-body" style="font-size: 30px;">
+    <div class="card-body" style="font-size: 30px;background: linear-gradient(3deg, #343a40, #d0ded5);border-radius: 10px" >
       <form [formGroup]="newCustomerFormGroup" (ngSubmit)="addCustomer()">
         <div class="mb-3">
           <div class="mb-3">
             <label class="form-label">Name:</label>
-            <input type="text" formControlName="name" class="form-control" style="font-size: 28px;">
+            <input type="text" formControlName="name" class="form-control" style="font-size: 20px;">
             <span class="text-danger" *ngIf=" newCustomerFormGroup.controls['name'].touched
           &&  newCustomerFormGroup.controls['name'].errors
           && newCustomerFormGroup.controls['name'].errors['required'] ">
@@ -17,8 +18,8 @@
           </span>
           </div>
           <label class="form-label">email:</label>
-          <input type="text" formControlName="email" class="form-control" style="font-size: 28px;">
-          <button [disabled]="!newCustomerFormGroup.valid" class="btn btn-success mt-3" style="font-size: 30px;">Save</button>
+          <input type="text" formControlName="email" class="form-control" style="font-size: 20px;">
+          <button [disabled]="!newCustomerFormGroup.valid" class="btn btn-success mt-3" style="font-size: 20px;width: 100%"> Save </button>
           <div class="mb-3">
           <span class="text-danger" *ngIf=" newCustomerFormGroup.controls['name'].touched
           &&  newCustomerFormGroup.controls['email'].errors

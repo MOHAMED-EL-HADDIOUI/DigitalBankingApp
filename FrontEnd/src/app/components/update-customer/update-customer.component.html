@@ -1,15 +1,16 @@
 <div class="page">
-<div class="container">
+<div class="container"style="padding-top: 2%;">
   <div style="text-align: center" class="card col-md-5 offset-3">
-    <div class="card-header" style="font-size: 40px;">
-      Update Customer Profile
+    <div class="card-header" style="display: flex; align-items: center;">
+      <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/v_collection_png/512x512/shadow/user_refresh.png" style="width: 10%; height: 8%;">
+      <h1 style="font-size: 30px; margin-left: 10px;">Update Customer Profile</h1>
     </div>
-    <div class="card-body" style="font-size: 30px;">
+    <div class="card-body" style="font-size: 20px;background: linear-gradient(3deg, #343a40, #d0ded5);border-radius: 10px">
       <form [formGroup]="updateCustomerFormGroup" (ngSubmit)="updateCustomer()">
         <div class="mb-3">
           <div class="mb-3">
             <label class="form-label">Name</label>
-            <input type="text" formControlName="name" class="form-control" style="font-size: 28px;">
+            <input type="text" formControlName="name" class="form-control" style="font-size: 20px;">
             <span class="text-danger" *ngIf=" updateCustomerFormGroup.controls['name'].touched
           &&  updateCustomerFormGroup.controls['name'].errors
           && updateCustomerFormGroup.controls['name'].errors['required'] ">
@@ -17,8 +18,8 @@
           </span>
           </div>
           <label class="form-label">Email</label>
-          <input type="text" formControlName="email" class="form-control" style="font-size: 28px;">
-          <button [disabled]="!updateCustomerFormGroup.valid" class="btn btn-success mt-3" style="font-size: 30px;">Save</button>
+          <input type="text" formControlName="email" class="form-control" style="font-size: 20px;">
+          <button [disabled]="!updateCustomerFormGroup.valid" class="btn btn-success mt-3" style="font-size: 20px;width: 100%">Save</button>
           <div class="mb-3">
           <span class="text-danger" *ngIf=" updateCustomerFormGroup.controls['name'].touched
           &&  updateCustomerFormGroup.controls['email'].errors
